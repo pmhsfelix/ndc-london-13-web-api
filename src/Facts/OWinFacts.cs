@@ -31,8 +31,8 @@ namespace Facts
             {
                 var config = new HttpConfiguration();
                 config.MapHttpAttributeRoutes();
-                app.UseWebApi(config); })){
-
+                app.UseWebApi(config); 
+            })){
                 var client = server.HttpClient;
                 var resp = await client.GetAsync("http://example.net/");
                 Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
