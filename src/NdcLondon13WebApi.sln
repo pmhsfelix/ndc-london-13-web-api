@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facts", "Facts\Facts.csproj", "{CC9B1020-884A-4F9D-94BF-7851567123E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BCB69305-2B25-473C-B22A-665F152D888B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assertions", "Assertions\Assertions.csproj", "{AE387F4C-5C94-419D-8491-C4987897267F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorations.AttributeRouting", "Explorations.AttributeRouting\Explorations.AttributeRouting.csproj", "{1192D81D-BF7E-4468-BB6E-2B8E15A480B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBusOwinServer", "AzureServiceBusOwinServer\AzureServiceBusOwinServer.csproj", "{CEC19F7B-3AE0-49A0-B940-EBE1D7037109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{1AE88EAB-D52A-4A7B-BEAD-85158FB66566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBusOwinServer.Tests", "AzureServiceBusOwinServer.Tests\AzureServiceBusOwinServer.Tests.csproj", "{5E8EC8D4-920E-402A-B4C2-1527084AB342}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9B1020-884A-4F9D-94BF-7851567123E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9B1020-884A-4F9D-94BF-7851567123E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9B1020-884A-4F9D-94BF-7851567123E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9B1020-884A-4F9D-94BF-7851567123E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB69305-2B25-473C-B22A-665F152D888B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB69305-2B25-473C-B22A-665F152D888B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB69305-2B25-473C-B22A-665F152D888B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB69305-2B25-473C-B22A-665F152D888B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE387F4C-5C94-419D-8491-C4987897267F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE387F4C-5C94-419D-8491-C4987897267F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE387F4C-5C94-419D-8491-C4987897267F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE387F4C-5C94-419D-8491-C4987897267F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1192D81D-BF7E-4468-BB6E-2B8E15A480B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1192D81D-BF7E-4468-BB6E-2B8E15A480B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1192D81D-BF7E-4468-BB6E-2B8E15A480B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1192D81D-BF7E-4468-BB6E-2B8E15A480B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC19F7B-3AE0-49A0-B940-EBE1D7037109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC19F7B-3AE0-49A0-B940-EBE1D7037109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC19F7B-3AE0-49A0-B940-EBE1D7037109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC19F7B-3AE0-49A0-B940-EBE1D7037109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE88EAB-D52A-4A7B-BEAD-85158FB66566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE88EAB-D52A-4A7B-BEAD-85158FB66566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE88EAB-D52A-4A7B-BEAD-85158FB66566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE88EAB-D52A-4A7B-BEAD-85158FB66566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8EC8D4-920E-402A-B4C2-1527084AB342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8EC8D4-920E-402A-B4C2-1527084AB342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8EC8D4-920E-402A-B4C2-1527084AB342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8EC8D4-920E-402A-B4C2-1527084AB342}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
