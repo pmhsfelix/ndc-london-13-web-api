@@ -24,6 +24,7 @@ namespace FixApp
     }
     class Program
     {
+        // Based on http://blog.markrendle.net/2013/10/01/fix-and-owin-and-simple-web/
         static void Main()
         {
             var config = new HttpConfiguration();
