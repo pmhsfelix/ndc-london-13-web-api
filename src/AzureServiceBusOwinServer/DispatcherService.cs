@@ -31,11 +31,17 @@ namespace AzureServiceBusOwin
         {
             var webOperContext = WebOperationContext.Current;
             var ms = new MemoryStream();
-            var owinContext = MakeOwinContextFrom(webOperContext.IncomingRequest, Stream.Null, ms);
+            var onSendingHeadersHandlers = new List<Tuple<Action<object>, object>>();
+            var owinContext = MakeOwinContextFrom(webOperContext.IncomingRequest, Stream.Null, ms, onSendingHeadersHandlers);
             await _next.Invoke(owinContext.Environment);
+            onSendingHeadersHandlers.Reverse();
+            foreach (var t in onSendingHeadersHandlers)
+            {
+                t.Item1(t.Item2);
+            }
             CopyOwinContextToOutgoingResponse(owinContext, webOperContext.OutgoingResponse);
-            ms.Seek(0, SeekOrigin.Begin);
-            return StreamMessageHelper.CreateMessage(MessageVersion.None, "GETRESPONSE", ms);
+            var buffer = ms.GetBuffer();
+            return StreamMessageHelper.CreateMessage(MessageVersion.None, "GETRESPONSE", new MemoryStream(buffer));
         }
 
         [WebInvoke(UriTemplate = "*", Method = "*")]
@@ -65,12 +71,17 @@ namespace AzureServiceBusOwin
             }
 
             var outputStream = new MemoryStream();
-            var owinContext = MakeOwinContextFrom(webOperContext.IncomingRequest, s, outputStream);
+            var onSendingHeadersHandlers = new List<Tuple<Action<object>, object>> ();
+            var owinContext = MakeOwinContextFrom(webOperContext.IncomingRequest, s, outputStream, onSendingHeadersHandlers);
             await _next.Invoke(owinContext.Environment);
+            onSendingHeadersHandlers.Reverse();
+            foreach (var t in onSendingHeadersHandlers)
+            {
+                t.Item1(t.Item2);
+            }
             CopyOwinContextToOutgoingResponse(owinContext, webOperContext.OutgoingResponse);
-            outputStream.Seek(0, SeekOrigin.Begin);
-            return StreamMessageHelper.CreateMessage(MessageVersion.None, "GETRESPONSE", outputStream);
-
+            var buffer = outputStream.GetBuffer();
+            return StreamMessageHelper.CreateMessage(MessageVersion.None, "GETRESPONSE", new MemoryStream(buffer));
         }
 
         private void CopyOwinContextToOutgoingResponse(OwinContext owinContext, OutgoingWebResponseContext outgoingResponse)
@@ -82,16 +93,19 @@ namespace AzureServiceBusOwin
             }
         }
 
-        private OwinContext MakeOwinContextFrom(IncomingWebRequestContext incomingRequest, Stream inputStream, Stream outputStream)
+        private OwinContext MakeOwinContextFrom(IncomingWebRequestContext incomingRequest, Stream inputStream, Stream outputStream, IList<Tuple<Action<object>,object>> onSendingHeadersHandler)
         {
             var ctx = new OwinContext();
             ctx.Request.Method = incomingRequest.Method;
             var reqUri = incomingRequest.UriTemplateMatch.RequestUri;
             ctx.Request.Scheme = reqUri.Scheme;
-            //ctx.Request.Host = new HostString(reqUri.Host);
             ctx.Request.Path = new PathString(reqUri.AbsolutePath);
             ctx.Request.QueryString = new QueryString(reqUri.Query);
 
+            var onSendingHeaders =
+                new Action<Action<object>, object>((h, o) => onSendingHeadersHandler.Add(Tuple.Create(h, o)));
+
+            ctx.Response.Set("server.OnSendingHeaders", onSendingHeaders);
             foreach (var name in incomingRequest.Headers.AllKeys)
             {
                 ctx.Request.Headers.Append(name, incomingRequest.Headers.Get(name));

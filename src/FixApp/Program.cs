@@ -11,9 +11,21 @@ using System.Web.Http.Owin;
 using Fix;
 using Microsoft.Owin;
 using Nowin;
+using Common;
 
 namespace FixApp
 {
+    public class HelloController : ApiController
+    {
+        public HttpResponseMessage GetAll()
+        {
+            return new HttpResponseMessage
+            {
+                Content = new WaveContent("Hello from NDC London 2013")
+            };
+        }
+    }
+    
     public class ResourcesController : ApiController
     {
         public HttpResponseMessage GetAll()
@@ -25,6 +37,7 @@ namespace FixApp
         }
     }
 
+    // Adapts between OwinMiddleware and Func<IDictionary<string,object>,Task> 
     class AdapterMiddleware : OwinMiddleware
     {
         private readonly Func<IDictionary<string, object>, Task> _next;
@@ -68,7 +81,7 @@ namespace FixApp
                     var kctx = new OwinContext(ctx);
                     kctx.Response.StatusCode = 404;
                     kctx.Response.Headers.Append("Content-Type", "text/plain");
-                    await kctx.Response.WriteAsync("No fx has the resource identified by the request");
+                    await kctx.Response.WriteAsync("No one has the resource identified by the request");
                 })
                 .Build();
 

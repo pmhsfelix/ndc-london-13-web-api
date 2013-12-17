@@ -28,7 +28,6 @@ namespace Common
                     return ms;
                 }
             });
-
             Headers.ContentType = new MediaTypeHeaderValue("audio/x-wav");
         }
 
@@ -43,7 +42,6 @@ namespace Common
         }
         protected override void Dispose(bool disposing)
         {
-            
         }
     }
 }
